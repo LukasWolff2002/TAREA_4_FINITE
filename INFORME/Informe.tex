@@ -226,4 +226,21 @@ Luego se cumple que:
 \begin{equation}
   S_{i+1} = S_i \cdot r
 \end{equation}
+
+Hagamos la integracion
+
+\begin{equation}
+\int_{x_j}^{x_{j+1}} (x - x_j)\, dx 
+= \frac{x_{j+1}^2 - 2x_{j+1} x_j + x_j^2}{2}
+= \frac{1}{2} \left(
+\left( 
+\frac{L (1 - r)}{1 - r^n} \cdot \frac{1}{1 + |x_j| \cdot 10^{16}} 
++ 
+\frac{(x_{j+1} - x_j) \cdot x_j}{x_j + 10^{-16}} \cdot r
+\right)^2
+\right)
+\end{equation}
+
+
+
 \end{document}
