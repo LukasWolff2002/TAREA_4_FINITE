@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.17)  3 JUN 2025 16:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.17)  3 JUN 2025 17:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -922,7 +922,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.229 \end{document}
+l.246 \end{document}
                      [1] (./Informe.aux
 LaTeX Info: Redefining \. on input line 15.
 LaTeX Info: Redefining \% on input line 15.
@@ -935,18 +935,18 @@ Package rerunfilecheck Info: File `Informe.out' has not changed.
 (rerunfilecheck)             Checksum: 30118C8D0179975C5F7E4048125BD863;200.
  ) 
 Here is how much of TeX's memory you used:
- 28744 strings out of 474116
- 527943 string characters out of 5743682
- 1931187 words of memory out of 5000000
+ 28755 strings out of 474116
+ 528010 string characters out of 5743682
+ 1934187 words of memory out of 5000000
  50551 multiletter control sequences out of 15000+600000
- 597432 words of font info for 122 fonts, out of 8000000 for 9000
+ 601980 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,5n,87p,1214b,546s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Informe.pdf (2 pages, 270485 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Informe.pdf (2 pages, 280538 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
+ 71 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
  44570 words of extra memory for PDF output out of 51595 (max. 10000000)
 

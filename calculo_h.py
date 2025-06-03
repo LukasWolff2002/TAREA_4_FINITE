@@ -27,3 +27,18 @@ print("S6:", s6)
 print("S7:", s7)
 print("S8:", s8)
 print("S9:", s9)
+
+#Podemos cincluir que h es una funcion de xj y x j+1, asi como yj e y_j+1
+
+#llevemoslo a una funcion
+
+def calcular_h(L, r, n, x):
+     return ((L * (1 - r)) / (1 - r**n))*(1/(1+abs(x)*1e16)) + ((x))*r
+
+x = 0
+for i in range(9):
+    x2 = calcular_h(L, r, n, x)
+    print(x2) #x es el tamaño del intervalor, no es xj y x_j+1
+    x = x2
+ 
+    
