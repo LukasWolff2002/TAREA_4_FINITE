@@ -234,7 +234,7 @@ def ejecutar_P1_con_msh(nombre_archivo_msh, alpha):
 # ------------------------------
 if __name__ == "__main__":
     # Nombre del archivo .msh que se entrega
-    archivo_msh = "pipe\geo.msh"
+    archivo_msh = "pipe/geo.msh"
 
     # Escoger alpha para la solución manufacturada
     alpha = 0.5
