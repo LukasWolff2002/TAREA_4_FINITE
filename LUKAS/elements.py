@@ -11,14 +11,15 @@ class CST:
         Calcula la matriz B del elemento CST.
         nodes: Lista completa de nodos.
         """
-        x1, y1 = nodes[self.node_ids[0]].x, nodes[self.node_ids[0]].y
-        x2, y2 = nodes[self.node_ids[1]].x, nodes[self.node_ids[1]].y
-        x3, y3 = nodes[self.node_ids[2]].x, nodes[self.node_ids[2]].y
+        # Convertir node_ids base 1 → índices base 0 para acceder a la lista
+        n1, n2, n3 = [nodes[i - 1] for i in self.node_ids]
 
-        # Área del triángulo
+        x1, y1 = n1.x, n1.y
+        x2, y2 = n2.x, n2.y
+        x3, y3 = n3.x, n3.y
+
         area = 0.5 * abs(x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2))
 
-        # Matriz B (para problema escalar tipo ∇²u = f)
         B = np.array([
             [y2 - y3, y3 - y1, y1 - y2],
             [x3 - x2, x1 - x3, x2 - x1]
