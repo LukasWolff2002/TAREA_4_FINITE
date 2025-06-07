@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.sparse import coo_matrix
 from scipy.sparse.linalg import spsolve
+from scipy.sparse import csr_matrix
 
 class Solve:
     def __init__(self, nodes, cst_elements, alpha):
@@ -71,4 +72,55 @@ class Solve:
         # Almacenar solución en cada nodo (ajuste base 1 → base 0)
         for node in self.nodes:
             node.u_fem = u_full[node.id - 1]
+
+    def real_solution(self):
+        for node in self.nodes:
+            node.solve_u(self.alpha)
+
+    def semi_norm_H1_0(self):
+        """
+        Calcula |u|^2_{H^1_0(Ω)} = ∫_Ω |∇u(x,y)|² dxdy, donde u = (x² + y²)^{α/2},
+        y Ω = [0,1] × [0,1] usando cuadratura de Gauss-Legendre.
+        """
+        alpha = self.alpha
+        orden=5
+
+        puntos, pesos = np.polynomial.legendre.leggauss(orden)
+        puntos = 0.5 * (puntos + 1)
+        pesos = 0.5 * pesos
+
+        total = 0.0
+
+        for i in range(orden):
+            for j in range(orden):
+                x = puntos[i]
+                y = puntos[j]
+                w = pesos[i] * pesos[j]
+
+                r2 = x**2 + y**2
+                if r2 == 0 and alpha < 1:
+                    grad2 = 0.0  # evitar singularidad
+                else:
+                    grad2 = alpha**2 * r2**(alpha - 1)
+
+                total += grad2 * w
+
+        return total  # ya es la semi-norma al cuadrado
+
+    def femm_solution(self):
+        x = np.zeros(self.nnodes)
+        
+        for node in self.nodes:
+            if hasattr(node, "boundary_label") and any("Diritchlet" in label for label in node.boundary_label):
+                x[node.id - 1] = node.u  # valor exacto en borde
+            else:
+                x[node.id - 1] = node.u_fem
+    
+
+        K = self.K_global
+        fem_energy = ((x.T @ K) @ x)
+
+        return fem_energy  # ya sin signo negativo
+
+
 
