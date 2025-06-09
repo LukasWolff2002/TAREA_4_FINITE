@@ -1,113 +1,139 @@
 \section{Theoretical Background}
 
-In this section, the theoretical background related to solving the Poisson problem using the Finite Element Method (FEM), as well as the verification method known as the \textit{Manufactured Solution Method} (MMS), is presented. The goal is to provide a detailed understanding of the necessary fundamentals to approach HW4.
+This section gathers the mathematical foundations and numerical techniques used to formulate, discretize, and verify the solution of the Poisson problem via the Finite Element Method (FEM).
+
+\subsection{Inner Product Spaces and Norms}
+
+Inner product spaces provide the abstract setting for variational formulations and error analysis.  An inner product space is a real vector space $V$ endowed with a bilinear form
+\begin{equation}
+  (u,v) = \langle u,v\rangle,
+\end{equation}
+which is symmetric, linear in its first argument, and positive‐definite.  It induces the norm
+\begin{equation}
+  \|v\| = \sqrt{\langle v,v\rangle},
+\end{equation}
+and satisfies the Cauchy–Schwarz inequality $|\langle u,v\rangle|\le\|u\|\|v\|$.  Completeness under this norm yields a Hilbert space structure, essential for Lax–Milgram arguments \cite{inner_product_space}.
+
+\subsection{Sobolev Spaces $H^1$ and $H_0^1$}
+
+Sobolev spaces extend inner product concepts to functions with weak derivatives.  The space
+\begin{equation}
+  H^1(\Omega)
+  = \{\,v\in L^2(\Omega)\mid \nabla v\in [L^2(\Omega)]^d\}
+\end{equation}
+carries the norm
+\begin{equation}
+  \|v\|_{H^1}^2 = \|v\|_{L^2}^2 + \|\nabla v\|_{L^2}^2.
+\end{equation}
+Imposing homogeneous Dirichlet data leads to
+\begin{equation}
+  H_0^1(\Omega)
+  = \overline{C_c^\infty(\Omega)}^{\|\cdot\|_{H^1}},
+\end{equation}
+the natural trial space for PDEs with zero boundary conditions \cite{sobolev_space}.
+
+\subsection{Hilbert Spaces}
+
+A Hilbert space is an inner product space that is complete with respect to the norm induced by its inner product.  Completeness means that every Cauchy sequence $\{v_n\}\subset V$ satisfies
+\begin{equation}
+  \lim_{m,n\to\infty}\|v_n - v_m\| = 0
+  \quad\Longrightarrow\quad
+  \exists\,v\in V:\ \lim_{n\to\infty}\|v_n - v\| = 0.
+\end{equation}
+Key examples include $L^2(\Omega)$ with inner product
+\begin{equation}
+  (u,v)_{L^2} = \int_\Omega u\,v\,dx,
+\end{equation}
+and the Sobolev space $H^1(\Omega)$ itself.  The Riesz representation theorem in a Hilbert space $H$ states that every continuous linear functional $F:H\to\mathbb{R}$ can be written uniquely as
+\begin{equation}
+  F(v) = (u_F, v)_H
+  \quad\text{for some }u_F\in H.
+\end{equation}
+This result underpins the variational theory of PDEs, since the mapping $v\mapsto\ell(v)$ in the weak formulation can be identified with an element of $H_0^1(\Omega)$, guaranteeing existence and uniqueness of solutions. \cite{inner_product_space}
 
 \subsection{Poisson Problem in 2D}
 
-The Poisson problem is a second-order partial differential equation (PDE) widely used in physics and engineering. Its general form is:
-
+The Poisson equation models steady‐state diffusion or potential fields.  In two dimensions:
 \begin{equation}
-    -\Delta u = f \quad \text{in} \quad \Omega,
+  -\Delta u = f \quad \text{in}\ \Omega,
 \end{equation}
-with boundary conditions on the domain \(\partial \Omega\), where:
-- \(\Delta\) is the Laplace operator,
-- \(u\) is the unknown function (e.g., electric potential, temperature, etc.),
-- \(f\) is the source function (e.g., charge density in electrostatics) \cite{poisson_equation}.
+subject to boundary conditions on $\partial\Omega$.  Here, $\Delta u=\partial_{xx}u+\partial_{yy}u$ and $f$ is a source term.  Dirichlet conditions $u=g$ or Neumann conditions $\partial_n u=h$ prescribe values on $\partial\Omega$ \cite{poisson_equation, dirichlet_boundary_condition, neumann_boundary_condition}.
 
-In 2D Cartesian coordinates, the Laplace operator is expressed as:
+\subsection{Weak (Variational) Formulation}
+
+Rewriting the boundary‐value problem in Sobolev spaces allows FEM discretization.  For $u-g\in H_0^1(\Omega)$, multiply by test $v\in H_0^1(\Omega)$ and integrate by parts:
 \begin{equation}
-    \Delta u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}.
+  \int_\Omega \nabla u\cdot\nabla v\,dx
+  = \int_\Omega f\,v\,dx
+  - \int_{\partial\Omega} h\,v\,ds.
 \end{equation}
-This operator is commonly used to model physical phenomena like heat conduction or electrostatic potential \cite{laplace_operator}.
-
-Boundary conditions can be either Dirichlet or Neumann:
-- Dirichlet: \(u(x,y) = g(x,y)\) on \(\partial \Omega\),
-- Neumann: \(\frac{\partial u}{\partial n} = h(x,y)\) on \(\partial \Omega\), where \(n\) is the normal direction to the boundary \cite{boundary_conditions}.
-
-In this task, we use the Dirichlet boundary condition \(u|_{\partial \Omega} = g\).
-
-\subsection{Weak Formulation of the Problem}
-
-To apply the Finite Element Method, the problem needs to be transformed into its \textit{weak formulation}. This is done by multiplying the differential equation by a test function \(v(x,y)\) and then integrating by parts. The weak formulation of Poisson is obtained by following these steps:
-
+Defining
 \begin{equation}
-    \int_\Omega -\Delta u \, v \, dx \, dy = \int_\Omega f \, v \, dx \, dy.
+  a(u,v)=\int_\Omega\nabla u\cdot\nabla v\,dx,\quad
+  \ell(v)=\int_\Omega f\,v\,dx-\int_{\partial\Omega}h\,v\,ds,
 \end{equation}
-
-Next, we perform integration by parts on the first term:
-
+the problem becomes: find $u\in H^1(\Omega)$ such that
 \begin{equation}
-    \int_\Omega -\Delta u \, v \, dx \, dy = \int_{\partial \Omega} \frac{\partial u}{\partial n} \, v \, ds - \int_\Omega \nabla u \cdot \nabla v \, dx \, dy.
+  a(u,v)=\ell(v)\quad\forall\,v\in H_0^1(\Omega).
 \end{equation}
-
-Where \(\frac{\partial u}{\partial n}\) is the normal derivative of \(u\) on the boundary. The weak formulation of the Poisson problem is:
-
-\begin{equation}
-    \int_\Omega \nabla u \cdot \nabla v \, dx \, dy = \int_\Omega f \, v \, dx \, dy - \int_{\partial \Omega} h \, v \, ds,
-\end{equation}
-for all \(v \in H_0^1(\Omega)\), where \(H_0^1(\Omega)\) is the space of functions with weak derivatives in \(L^2(\Omega)\) and that vanish on the boundary \(\partial \Omega\) \cite{weak_formulation}.
+Continuity and coercivity of $a(\cdot,\cdot)$ guarantee a unique solution via Lax–Milgram \cite{weak_formulation}.
 
 \subsection{Galerkin Method}
 
-The Galerkin Method is a technique used to solve differential equations using approximations based on finite function spaces. The Galerkin principle is applied to the weak formulation of the problem, where we seek an approximation \(u_h \in V_h \subset H_0^1(\Omega)\) such that:
-
+The Galerkin method projects the infinite‐dimensional weak problem onto a finite subspace $V_h\subset H_0^1(\Omega)$.  One seeks $u_h\in V_h$ such that
 \begin{equation}
-    a(u_h, v_h) = \ell(v_h) \quad \forall v_h \in V_h.
+  a(u_h,v_h)=\ell(v_h)
+  \quad\forall\,v_h\in V_h.
 \end{equation}
-
-Where:
+This ensures \emph{Galerkin orthogonality}
 \begin{equation}
-    a(u_h, v_h) = \int_\Omega \nabla u_h \cdot \nabla v_h \, dx,
+  a(u-u_h,v_h)=0
+  \quad\forall\,v_h\in V_h,
 \end{equation}
-and
-\begin{equation}
-    \ell(v_h) = \int_\Omega f \, v_h \, dx - \int_{\partial \Omega} h \, v_h \, ds.
-\end{equation}
+which is fundamental to derive error estimates \cite{Galerkin_method}.
 
-Here, \(V_h\) is a finite subspace of \(H_0^1(\Omega)\), typically generated by linear (CST) or quadratic (LST) shape functions, depending on the type of finite elements used \cite{galerkin_method}.
+\subsection{Finite Element Spaces: CST and LST}
 
-\subsection{Finite Elements: CST and LST}
+Finite element spaces consist of piecewise‐defined basis functions over a mesh.
 
 \subsubsection{CST Elements (Constant Strain Triangle)}
 
-The CST elements (Constant Strain Triangle) are first-order finite elements that use linear shape functions. In 2D, each triangle has three nodes, one at each vertex. The shape functions for these elements are linear and associated with the vertices of the triangle. The stiffness matrix for these elements is computed as:
-
+CST uses three linear shape functions per triangle $T$, each associated with a vertex and satisfying $\varphi_i(x_j)=\delta_{ij}$.  The stiffness matrix entry is
 \begin{equation}
-    K^e_{ij} = \int_T \nabla \varphi_i \cdot \nabla \varphi_j \, dx,
+  K^e_{ij}=\int_T\nabla\varphi_i\cdot\nabla\varphi_j\,dx,
 \end{equation}
-where \(T\) is the triangle and \(\varphi_i\) are the linear shape functions associated with the vertices of the triangle. The matrix of stiffness for CST elements is relatively simple to compute since the gradients of the shape functions are constant within each triangle.
-
-These elements are suitable for problems where the solution is smooth but may not be as accurate near singularities. The CST elements are widely used for problems that do not have sharp gradients or significant non-linearity.
+with constant gradients on $T$, yielding a simple, first‐order accurate scheme \cite{finite_element_method}.
 
 \subsubsection{LST Elements (Linear Serendipity Triangle)}
 
-The LST elements (Linear Serendipity Triangle) are second-order finite elements that use quadratic shape functions. In 2D, each triangle has six nodes: three at the vertices and three at the midpoints of the edges. These shape functions are quadratic and provide more flexibility in approximating the solution. The stiffness matrix for these elements is more complex to compute than for CST elements because the gradients of the shape functions are not constant.
-
-\[
-K^e_{ij} = \int_T \nabla \varphi_i \cdot \nabla \varphi_j \, dx,
-\]
-where \(T\) is the triangle and \(\varphi_i\) are the quadratic shape functions associated with the six nodes. These elements provide a higher degree of accuracy than CST elements, especially for problems with smooth solutions or problems requiring a finer approximation.
-
-LST elements are more computationally expensive but yield more accurate results in simulations requiring high precision.
+LST augments CST by adding three mid‐edge nodes, producing six quadratic shape functions per triangle.  The same formula
+\begin{equation}
+  K^e_{ij}=\int_T\nabla\varphi_i\cdot\nabla\varphi_j\,dx
+\end{equation}
+applies, but gradients vary within $T$, giving second‐order convergence at increased computational cost \cite{finite_element_method}.
 
 \subsection{Manufactured Solution Method}
 
-The Manufactured Solution Method (MMS) is a technique used to verify the accuracy of a numerical code. In this method, an exact solution \(u_{\text{MMS}}(x)\) for the Poisson problem is chosen, and the corresponding source term \(f(x)\) and boundary conditions \(g(x)\) or \(h(x)\) are computed to make \(u_{\text{MMS}}(x)\) the exact solution of the differential equation.
-
-The steps to apply MMS are as follows:
-
-\begin{enumerate}
-    \item \textbf{Choose an exact solution \(u_{\text{MMS}}(x)\)}: Select a smooth and analytical function as the solution.
-    \item \textbf{Calculate the source term \(f(x)\)}: Differentiate the Poisson equation with \(u_{\text{MMS}}(x)\) to obtain \(f(x) = -\Delta u_{\text{MMS}}(x)\).
-    \item \textbf{Determine the boundary conditions \(g(x)\) or \(h(x)\)}: If Dirichlet, set \(g(x) = u_{\text{MMS}}(x)\) on the boundary; if Neumann, calculate \(h(x) = \frac{\partial u_{\text{MMS}}}{\partial n}\) on the boundary.
-    \item \textbf{Solve the problem numerically}: Use the numerical code to solve the problem with the source term \(f(x)\) and boundary conditions \(g(x)\) or \(h(x)\).
-    \item \textbf{Compare the numerical solution with the exact solution \(u_{\text{MMS}}(x)\)}: Compute the error \(e(x) = u_{\text{MMS}}(x) - u_h(x)\) at each node or point on the mesh, and measure the error in norms such as \(L^2\) or \(H^1\).
-\end{enumerate}
-
-This method allows us to verify the accuracy of the numerical code and calculate the convergence rate by observing how the error decreases as the mesh is refined \cite{manufactured_solution_method}.
+The MMS provides a systematic code verification test.  One selects an analytic $u_{\rm MMS}$, then computes
+\begin{equation}
+  f=-\Delta u_{\rm MMS},
+  \quad
+  g=u_{\rm MMS}\big|_{\partial\Omega}.
+\end{equation}
+Solving the FEM system with these data and comparing $u_h$ to $u_{\rm MMS}$ in various norms reveals implementation errors \cite{Method_of_manufactured_solutions}.
 
 \subsection{Convergence Study}
 
-The convergence study is carried out to verify that the numerical code follows the theoretical convergence expectations. Generally, for first-order finite elements CST, the error in the seminorm \(H^1\) should decay at a rate of \(O(h)\), while the error in the \(L^2\) norm should decay at a rate of \(O(h^2)\). For second-order finite elements LST, we expect the error in \(H^1\) to decay at \(O(h^2)\) and the error in \(L^2\) to decay at \(O(h^3)\).
-
-To study the convergence, several problems are solved with different mesh sizes \(h\), and the \(L^2\) and \(H^1\) norms of the error are computed. The results are plotted on a log-log graph, where the slope of the fitted line indicates the convergence rate \cite{convergence_study}.
+Error analysis predicts for CST
+\begin{equation}
+  \|u-u_h\|_{H^1}=O(h),
+  \quad
+  \|u-u_h\|_{L^2}=O(h^2),
+\end{equation}
+and for LST
+\begin{equation}
+  \|u-u_h\|_{H^1}=O(h^2),
+  \quad
+  \|u-u_h\|_{L^2}=O(h^3).
+\end{equation}
+Numerical experiments on successive mesh refinements, plotted as $\log(\|e\|)$ vs.\ $\log(h)$, confirm these rates \cite{Convergence_numerical_analysis}.

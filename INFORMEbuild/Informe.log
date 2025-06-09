@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.11.16)  6 JUN 2025 19:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.11.16)  8 JUN 2025 23:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -654,7 +654,15 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks45
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-) (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty
+) (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup6
+\symAMSb=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 ) (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged2e.sty
 Package: ragged2e 2023/06/22 v3.6 ragged2e Package
@@ -770,35 +778,35 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count359
 )
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 123.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 124.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.aux
 LaTeX Info: Redefining \. on input line 15.
 LaTeX Info: Redefining \% on input line 15.
- (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\intro.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\teoria.aux))
+ (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\intro.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\teoria.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\resul.aux))
 \openout1 = `Informe.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Info: Redefining \. on input line 123.
-LaTeX Info: Redefining \% on input line 123.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Info: Redefining \. on input line 124.
+LaTeX Info: Redefining \% on input line 124.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
@@ -839,19 +847,19 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 123.
-Package microtype Info: Applying patch `item' on input line 123.
-Package microtype Info: Applying patch `toc' on input line 123.
-Package microtype Info: Applying patch `eqnum' on input line 123.
-Package microtype Info: Applying patch `footnote' on input line 123.
-Package microtype Info: Applying patch `verbatim' on input line 123.
+LaTeX Info: Redefining \microtypecontext on input line 124.
+Package microtype Info: Applying patch `item' on input line 124.
+Package microtype Info: Applying patch `toc' on input line 124.
+Package microtype Info: Applying patch `eqnum' on input line 124.
+Package microtype Info: Applying patch `footnote' on input line 124.
+Package microtype Info: Applying patch `verbatim' on input line 124.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 123.
+LaTeX Info: Redefining \showhyphens on input line 124.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -876,7 +884,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 123.
+Package hyperref Info: Link coloring ON on input line 124.
  (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.out) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.out)
 \@outlinefile=\write4
 \openout4 = `Informe.out'.
@@ -885,10 +893,10 @@ Package hyperref Info: Link coloring ON on input line 123.
 
 Couldn't patch \ttl@straight@ii
 Couldn't patch \ttl@straight@ii
-<LOGO_UNIVERSIDAD.jpg, id=46, 682.9515pt x 247.6452pt>
+<LOGO_UNIVERSIDAD.jpg, id=62, 682.9515pt x 247.6452pt>
 File: LOGO_UNIVERSIDAD.jpg Graphic file (type jpg)
 <use LOGO_UNIVERSIDAD.jpg>
-Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 134.
+Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 135.
 (pdftex.def)             Requested size: 284.52756pt x 103.17137pt.
 
 
@@ -897,20 +905,8 @@ Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 134.
 {C:/Users/felip/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./LOGO_UNIVERSIDAD.jpg>]
 \openout2 = `intro.aux'.
 
- (intro.tex)
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.172 \include{intro}
-                      [1
-
-]
-\openout2 = `teoria.aux'.
-
- (teoria.tex
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 9.
+ (intro.tex
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 3.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
@@ -918,46 +914,93 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 9.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 3.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 9.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 3.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 9.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 3.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 9.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 3.
  (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+ (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+) (C:\Users\felip\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+))
 
 
-Package natbib Warning: Citation `poisson_equation' on page 2 undefined on input line 15.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.173 \include{intro}
+                      [1
+
+]
+\openout2 = `teoria.aux'.
+
+ (teoria.tex
+
+Package natbib Warning: Citation `inner_product_space' on page 2 undefined on input line 15.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 17.
 
 
-Package natbib Warning: Citation `laplace_operator' on page 2 undefined on input line 21.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 17.
 
 
-Package natbib Warning: Citation `boundary_conditions' on page 2 undefined on input line 25.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 17.
 
 
-Package natbib Warning: Citation `weak_formulation' on page 2 undefined on input line 48.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 17.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 17.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 17.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 17.
+
+
+Package natbib Warning: Citation `sobolev_space' on page 2 undefined on input line 33.
+
+
+Package natbib Warning: Citation `inner_product_space' on page 2 undefined on input line 52.
 
 
 
 File: LOGO_UNIVERSIDAD.jpg Graphic file (type jpg)
 <use LOGO_UNIVERSIDAD.jpg>
-Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 53.
+Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 59.
 (pdftex.def)             Requested size: 110.8946pt x 40.20973pt.
 [2
 
@@ -965,67 +1008,85 @@ Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 53.
 
 ]
 
-Package natbib Warning: Citation `galerkin_method' on page 3 undefined on input line 67.
+Package natbib Warning: Citation `poisson_equation' on page 3 undefined on input line 60.
+
+
+Package natbib Warning: Citation `dirichlet_boundary_condition' on page 3 undefined on input line 60.
+
+
+Package natbib Warning: Citation `neumann_boundary_condition' on page 3 undefined on input line 60.
+
+
+Package natbib Warning: Citation `weak_formulation' on page 3 undefined on input line 79.
+
+
+Package natbib Warning: Citation `Galerkin_method' on page 3 undefined on input line 93.
+
+
+Package natbib Warning: Citation `finite_element_method' on page 3 undefined on input line 105.
 
 
 
 File: LOGO_UNIVERSIDAD.jpg Graphic file (type jpg)
 <use LOGO_UNIVERSIDAD.jpg>
-Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 96.
+Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 112.
 (pdftex.def)             Requested size: 110.8946pt x 40.20973pt.
 [3]
 
-Package natbib Warning: Citation `manufactured_solution_method' on page 4 undefined on input line 107.
+Package natbib Warning: Citation `finite_element_method' on page 4 undefined on input line 113.
 
 
-Package natbib Warning: Citation `convergence_study' on page 4 undefined on input line 113.
+Package natbib Warning: Citation `Method_of_manufactured_solutions' on page 4 undefined on input line 123.
+
+
+Package natbib Warning: Citation `Convergence_numerical_analysis' on page 4 undefined on input line 139.
 
 )
 
 File: LOGO_UNIVERSIDAD.jpg Graphic file (type jpg)
 <use LOGO_UNIVERSIDAD.jpg>
-Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 173.
+Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 174.
 (pdftex.def)             Requested size: 110.8946pt x 40.20973pt.
-[4] (Informe.bbl
+[4]
+\openout2 = `resul.aux'.
 
-Package natbib Warning: Empty `thebibliography' environment on input line 8.
-
-)
-
-Package natbib Warning: There were undefined citations.
-
-
+ (resul.tex)
 
 File: LOGO_UNIVERSIDAD.jpg Graphic file (type jpg)
 <use LOGO_UNIVERSIDAD.jpg>
-Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 177.
+Package pdftex.def Info: LOGO_UNIVERSIDAD.jpg  used on input line 176.
 (pdftex.def)             Requested size: 110.8946pt x 40.20973pt.
 [5
 
 
-] (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.aux
+
+]
+
+Package natbib Warning: There were undefined citations.
+
+(c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.aux
 LaTeX Info: Redefining \. on input line 15.
 LaTeX Info: Redefining \% on input line 15.
- (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\intro.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\teoria.aux))
+ (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\intro.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\teoria.aux) (c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\resul.aux))
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
  ***********
 Package rerunfilecheck Info: File `Informe.out' has not changed.
-(rerunfilecheck)             Checksum: 12B5DC075DB04433B4A66456E947AA90;1922.
+(rerunfilecheck)             Checksum: 4E6956D9D5C5E60D10F6C006879734A9;2575.
  ) 
 Here is how much of TeX's memory you used:
- 29085 strings out of 473899
- 539021 string characters out of 5726499
+ 29696 strings out of 473899
+ 547040 string characters out of 5726499
  1938960 words of memory out of 5000000
- 51278 multiletter control sequences out of 15000+600000
- 608559 words of font info for 176 fonts, out of 8000000 for 9000
+ 51845 multiletter control sequences out of 15000+600000
+ 621202 words of font info for 217 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,87p,1219b,547s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.pdf" (6 pages, 325370 bytes).
+ 84i,17n,87p,1219b,547s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/felip/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "c:/Users\felip\OneDrive\Escritorio\202510\Finite Elements\TAREA_4_FINITE\INFORMEbuild\Informe.pdf" (6 pages, 336944 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
- 58984 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
+ 62600 words of extra memory for PDF output out of 74296 (max. 10000000)
 
