@@ -30,10 +30,8 @@ def modificar_geo(archivo_entrada, archivo_salida, nuevo_n, nuevo_r):
     with open(archivo_salida, "w") as f:
         f.writelines(nuevas_lineas)
 
-def load_mesh_objects(geo_file="geo.geo", msh_file="mesh.msh"):
-    if os.path.exists(msh_file):
-        os.remove(msh_file)
 
+def load_mesh_objects(geo_file="geo.geo", msh_file="mesh.msh"):
     gmsh.initialize()
     gmsh.open(geo_file)
     gmsh.model.mesh.generate(2)
@@ -82,14 +80,14 @@ def main(N, R, alpha):
     nodes = None
     elements = None
 
-    geo_file = "LUKAS/geo.geo"
-    mesh_file = "LUKAS/mesh.msh"
+    geo_file = "CST/geo.geo"
+    mesh_file = "CST/mesh.msh"
 
     #En primero lugar modifico el archivo geo
     modificar_geo(geo_file, geo_file, N, R)
 
     #Genero la malla
-    nodes, elements = load_mesh_objects(geo_file, mesh_file)
+    nodes, elements = load_mesh_objects(geo_file=geo_file, msh_file=mesh_file)
 
     #Obtengo la solucion numerica por nodo
     for node in nodes:
@@ -97,6 +95,8 @@ def main(N, R, alpha):
 
     #Resuelvo la estructura
     Estructure = Solve(nodes, elements, alpha)
+
+    Estructure.solve_matrix()
 
     #errores = error(nodes)
     solucion_analitica = Estructure.semi_norm_H1_0()
@@ -107,31 +107,34 @@ def main(N, R, alpha):
     error = np.abs(solucion_analitica - solucion_fem)
 
     # Guardar en .txt
-    with open("LUKAS/resultados.txt", "a") as f:
+
+    with open("CST/resultados.txt", "a") as f:
         f.write(f"N = {N}, R = {R}, alpha = {alpha}\n")
         f.write(f"Error: {error:.6e}\n")
         f.write("-" * 40 + "\n")
 
-    print("Resultados guardados en LUKAS/resultados.txt")
+    print("Resultados guardados en CST/resultados.txt")
 
     
 
 if __name__ == "__main__":
 
-    """
+    open("CST/resultados.txt", "w").close()
+
     N = []
-    for i in range(10):
-        N.append(i + 1)
+    for i in range(20):
+        N.append(i + 10)
 
     R = []
-    for i in range(1):
+    for i in range(10):
         R.append(1.0 + (i) * 0.05)
-    """
-    alpha = 0.5
 
-    #for n in N:
-    #    for r in R:
-    main(10, 1, alpha)
+    alpha = 0.1
+
+    for n in N:
+        for r in R:
+            main(n, r, alpha)
+   
        
         
     

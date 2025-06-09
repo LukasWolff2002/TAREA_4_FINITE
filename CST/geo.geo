@@ -16,12 +16,12 @@ Line(4) = {4, 1};
 Line Loop(1) = {1, 2, 3, 4};
 Plane Surface(1) = {1};
 
-n = 10;
-r = 1;
+n = 24;
+r = 1.25;
 
 // Refinamiento hacia (0,0)
-Transfinite Curve{1, 2} = 10 Using Progression 1;
-Transfinite Curve{4, 3} = 10 Using Progression 1/1;
+Transfinite Curve{1, 2} = 24 Using Progression 1.25;
+Transfinite Curve{4, 3} = 24 Using Progression 1/1.25;
 
 // ⚠️ Cambiar orientación de la diagonal
 Transfinite Surface {1} = {2, 3, 4, 1};
