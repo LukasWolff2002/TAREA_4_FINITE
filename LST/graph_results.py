@@ -48,6 +48,6 @@ def graficar_errores_por_R(resultados_por_R):
 
 
 # Uso
-ruta = "LUKAS/resultados.txt"
+ruta = "LST/resultados.txt"
 resultados_por_R = leer_resultados_por_R(ruta)
 graficar_errores_por_R(resultados_por_R)
