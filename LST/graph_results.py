@@ -36,15 +36,17 @@ def graficar_errores_por_R(resultados_por_R):
         errores = [e for _, e in valores_ordenados]
         plt.plot(N_vals, errores, label=f"R = {r:.2f}")
 
-    plt.xlabel("N (divisiones)")
-    plt.ylabel("Error Medio (escala log)")
+    plt.xlabel("N (divisions)")
+    plt.ylabel("Mean Error (log scale)")
     plt.yscale("log")
     plt.xscale("log")
-    plt.title("Error máximo vs N para cada R constante")
+    plt.title("Maximum error vs N for each constant R")
     plt.grid(True, which="both", ls="--", linewidth=0.5)
-    plt.legend(title="Progresión R", fontsize=9)
+    plt.legend(title="Progression R", fontsize=9)
     plt.tight_layout()
-    plt.show()
+
+
+    plt.savefig("INFORME/GRAFICOS/LST/errores_por_R.png", dpi=300)
 
 
 # Uso

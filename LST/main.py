@@ -136,11 +136,11 @@ if __name__ == "__main__":
     open("LST/resultados.txt", "w").close()
 
     N = []
-    for i in range(40):
+    for i in range(100):
         N.append(i + 15)
 
     R = []
-    for i in range(5):
+    for i in range(10):
         R.append(1.0 + (i) * 0.05)
 
     alpha = 0.1

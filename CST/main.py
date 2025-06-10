@@ -122,7 +122,7 @@ if __name__ == "__main__":
     open("CST/resultados.txt", "w").close()
 
     N = []
-    for i in range(20):
+    for i in range(40):
         N.append(i + 10)
 
     R = []
