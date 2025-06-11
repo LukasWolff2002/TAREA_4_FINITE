@@ -1,36 +1,36 @@
 SetFactory("OpenCASCADE");
 
-// Puntos del cuadrado
+// Puntos
 Point(1) = {0, 0, 0, 1};
 Point(2) = {1, 0, 0, 1};
 Point(3) = {1, 1, 0, 1};
 Point(4) = {0, 1, 0, 1};
 
-// Líneas
-Line(1) = {1, 2};
-Line(2) = {2, 3};
-Line(3) = {3, 4};
-Line(4) = {4, 1};
+// Líneas (sentido antihorario)
+Line(1) = {1, 2};  // inferior
+Line(2) = {2, 3};  // derecho
+Line(3) = {3, 4};  // superior
+Line(4) = {4, 1};  // izquierdo
 
 // Superficie
 Line Loop(1) = {1, 2, 3, 4};
 Plane Surface(1) = {1};
 
-n = 49;
-r = 1.45;
+// Parámetros de mallado
+n = 59;
+r = 1.1;
 
-// Refinamiento hacia (0,0)
-Transfinite Curve{1, 2} = 49 Using Progression 1.45;
-Transfinite Curve{4, 3} = 49 Using Progression 1/1.45;
+// Refinamiento progresivo
+Transfinite Curve{1, 2} = 59 Using Progression 1.1;
+Transfinite Curve{3, 4} = n Using Progression 1/r;
 
-// ⚠️ Cambiar orientación de la diagonal
+// ⚠️ Cambia orientación de malla, pero NO las líneas físicas
 Transfinite Surface {1} = {2, 3, 4, 1};
 
-// Physical Surface
+// Physical tags
+Physical Line("Dirichlet 1") = {1};  // borde inferior
+Physical Line("Dirichlet 2") = {2};  // borde derecho
+Physical Line("Dirichlet 3") = {3};  // borde superior
+Physical Line("Dirichlet 4") = {4};  // borde izquierdo
+
 Physical Surface("Dominio") = {1};
-
-Physical Line("Diritchlet 1") = {1};
-Physical Line("Diritchlet 2") = {2};
-Physical Line("Diritchlet 3") = {3};
-Physical Line("Diritchlet 4") = {4};
-

@@ -38,37 +38,43 @@ def fixed_load_mesh_objects(geo_file="geo.geo", msh_file="mesh.msh"):
     gmsh.option.setNumber("Mesh.ElementOrder", 2)
     gmsh.option.setNumber("Mesh.MshFileVersion", 2.2)
     gmsh.model.mesh.generate(2)
+    gmsh.write(msh_file)  # ⚠️ IMPORTANTE: genera el .msh antes de leerlo
+    gmsh.finalize()
 
-    # Obtener todos los nodos y sus coordenadas
-    all_tags, all_coords, _ = gmsh.model.mesh.getNodes()
-    all_coords = all_coords.reshape(-1, 3)
-    tag_to_xy = {tag: (round(x, 8), round(y, 8)) for tag, (x, y, _) in zip(all_tags, all_coords)}
-
-    # Leer archivo de malla en paralelo
+    # Leer malla
     mesh = meshio.read(msh_file)
 
-    # Crear nodos con índices base 1
+    # Crear nodos
     nodes = [Node(i + 1, x, y) for i, (x, y, _) in enumerate(mesh.points)]
 
-    # Mapear coordenadas → índice base 1
-    coord_to_index = {(round(x, 8), round(y, 8)): i + 1 for i, (x, y, _) in enumerate(mesh.points)}
-
-    # Buscar nodos de borde
+    # Obtener nodos de borde con etiquetas físicas
     boundary_nodes = {}
-    for dim in [1]:
-        phys_groups = gmsh.model.getPhysicalGroups(dim)
-        for _, tag in phys_groups:
-            node_indices = set()
-            entities = gmsh.model.getEntitiesForPhysicalGroup(dim, tag)
-            for entity in entities:
-                element_type, element_tags, node_tags = gmsh.model.mesh.getElements(dim, entity)
-                for nlist in node_tags:
-                    for node_id in nlist:
-                        node_indices.add(node_id)  # usamos el ID original, no mapeo por coordenadas
-            boundary_nodes[tag] = node_indices
+    gmsh.initialize()
+    gmsh.open(msh_file)
 
-    gmsh.write(msh_file)
+    physicals = gmsh.model.getPhysicalGroups(1)
+    name_map = {}
+    for dim, tag in physicals:
+        name = gmsh.model.getPhysicalName(dim, tag)
+        name_map[tag] = name
+        boundary_nodes[name] = set()
+
+        entities = gmsh.model.getEntitiesForPhysicalGroup(dim, tag)
+        for entity in entities:
+            _, _, node_tags = gmsh.model.mesh.getElements(dim, entity)
+            for nlist in node_tags:
+                for node_id in nlist:
+                    boundary_nodes[name].add(int(node_id))
+
+
     gmsh.finalize()
+
+    # Asignar etiquetas de borde a los nodos
+    for node in nodes:
+        node.boundary_label = []
+        for name, id_set in boundary_nodes.items():
+            if node.id in id_set:
+                node.boundary_label.append(name)
 
     # Crear elementos LST
     lst_elements = []
@@ -76,15 +82,10 @@ def fixed_load_mesh_objects(geo_file="geo.geo", msh_file="mesh.msh"):
         if cell_block.type in ["triangle6", "triangle"]:
             for i, node_ids in enumerate(cell_block.data):
                 if len(node_ids) == 6:
-                    node_ids = [int(id) + 1 for id in node_ids]
+                    node_ids = [int(id) + 1 for id in node_ids]  # +1 para pasar a base 1
                     lst_elements.append(LST(i + 1, node_ids))
 
-    # Asignar etiquetas
-    for node in nodes:
-        node.boundary_label = []
-        for tag, ids in boundary_nodes.items():
-            if node.id in ids:
-                node.boundary_label.append(f"Dirichlet")
+    print(boundary_nodes)
 
     return nodes, lst_elements
 
@@ -113,7 +114,7 @@ def main(N, R, alpha):
     Estructure.solve_matrix()
 
     #errores = error(nodes)
-    solucion_analitica = Estructure.semi_norm_H1_0()
+    solucion_analitica = Estructure.semi_norm_H1_0(alpha)
     print(f"Solución analítica: {solucion_analitica}")
     solucion_fem = Estructure.femm_solution()
     print(f"Solución FEM: {solucion_fem}")
@@ -136,14 +137,14 @@ if __name__ == "__main__":
     open("LST/resultados.txt", "w").close()
 
     N = []
-    for i in range(100):
-        N.append(i + 15)
+    for i in range(50):
+        N.append(i + 10)
 
     R = []
-    for i in range(10):
+    for i in range(3):
         R.append(1.0 + (i) * 0.05)
 
-    alpha = 0.1
+    alpha = 3
 
     for n in N:
         for r in R:

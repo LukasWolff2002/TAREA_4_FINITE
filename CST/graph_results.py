@@ -24,9 +24,10 @@ def leer_resultados_por_R(path):
     return resultados_por_R
 
 
-def graficar_errores_por_R(resultados_por_R):
+def graficar_errores_por_R(resultados_por_R, C=3e-1):
     """
     Grafica el error máximo en función de N para cada R constante, con eje Y en escala logarítmica.
+    También incluye una recta de referencia y = C / N^2.
     """
     plt.figure(figsize=(10, 6))
 
@@ -36,6 +37,11 @@ def graficar_errores_por_R(resultados_por_R):
         errores = [e for _, e in valores_ordenados]
         plt.plot(N_vals, errores, label=f"R = {r:.2f}")
 
+    # Línea de referencia O(h^2) ≈ C / N^2
+    N_ref = np.array(sorted(set(n for v in resultados_por_R.values() for n, _ in v)))
+    error_ref = C / (N_ref)
+    plt.plot(N_ref, error_ref, 'k--', label=r"$\mathcal{O}(h^2)$ ref")
+
     plt.xlabel("N (divisions)")
     plt.ylabel("Mean Error (log scale)")
     plt.yscale("log")
@@ -44,7 +50,8 @@ def graficar_errores_por_R(resultados_por_R):
     plt.grid(True, which="both", ls="--", linewidth=0.5)
     plt.legend(title="Progression R", fontsize=9)
     plt.tight_layout()
-    plt.savefig("INFORME/GRAFICOS/CST/errores_por_R.png", dpi=300)
+    plt.savefig("INFORME/GRAFICOS/LST/errores_por_R.png", dpi=300)
+    plt.show()
 
 
 
