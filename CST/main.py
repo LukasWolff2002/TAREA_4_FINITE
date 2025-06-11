@@ -36,42 +36,47 @@ def load_mesh_objects(geo_file="geo.geo", msh_file="mesh.msh"):
     gmsh.open(geo_file)
     gmsh.model.mesh.generate(2)
     gmsh.write(msh_file)
+    
+    # Obtener el mapeo entre tag y nombre de entidades físicas
+    physicals = gmsh.model.getPhysicalGroups()
+    name_map = {}
+    for dim, tag in physicals:
+        name = gmsh.model.getPhysicalName(dim, tag)
+        name_map[tag] = name
+
     gmsh.finalize()
 
     # Leer malla
     mesh = meshio.read(msh_file)
-
-    # Crear nodos
-    nodes = [Node(i+1, x, y) for i, (x, y, _) in enumerate(mesh.points)]
+    nodes = [Node(i + 1, x, y) for i, (x, y, _) in enumerate(mesh.points)]
 
     # Crear elementos CST
     cst_elements = []
     for cell_block in mesh.cells:
         if cell_block.type == "triangle":
             for i, node_ids in enumerate(cell_block.data):
-                node_ids = [int(id) + 1 for id in node_ids]  # Convertir a índices base 1
-                
-                cst_elements.append(CST(i+1 , list(node_ids)))
+                cst_elements.append(CST(i + 1, list(node_ids + 1)))  # +1 base 1
             break
 
-    # Detectar nodos en líneas físicas ("Diritchlet 1" a "Diritchlet 4")
-    boundary_nodes = {1: set(), 2: set(), 3: set(), 4: set()}
-
-    for i, cell_block in enumerate(mesh.cells):
+    # Detectar nodos en líneas físicas con nombre
+    boundary_nodes = {name: set() for name in name_map.values() if name.startswith("Dirichlet")}
+    
+    for cell_block, phys_ids in zip(mesh.cells, mesh.cell_data["gmsh:physical"]):
         if cell_block.type == "line":
-            physical_ids = mesh.cell_data_dict['gmsh:physical']['line']
-            for line, phys_id in zip(cell_block.data, physical_ids):
-                if phys_id in boundary_nodes:
+            for line, tag in zip(cell_block.data, phys_ids):
+                phys_name = name_map.get(tag, None)
+                if phys_name and phys_name.startswith("Dirichlet"):
                     for node_id in line:
-                        boundary_nodes[phys_id].add(int(node_id))
+                        boundary_nodes[phys_name].add(int(node_id) + 1)
 
-    # Añadir etiquetas de borde a los nodos
+    # Asignar etiquetas a los nodos
     for node in nodes:
         node.boundary_label = []
-        for label_id, node_set in boundary_nodes.items():
+        for label, node_set in boundary_nodes.items():
             if node.id in node_set:
-                node.boundary_label.append(f"Diritchlet Boundary")
+                node.boundary_label.append(label)
 
+    
     return nodes, cst_elements
 
 def main(N, R, alpha):   
@@ -122,14 +127,14 @@ if __name__ == "__main__":
     open("CST/resultados.txt", "w").close()
 
     N = []
-    for i in range(40):
+    for i in range(50):
         N.append(i + 10)
 
     R = []
-    for i in range(10):
+    for i in range(3):
         R.append(1.0 + (i) * 0.05)
 
-    alpha = 0.1
+    alpha = 3
 
     for n in N:
         for r in R:

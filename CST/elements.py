@@ -7,38 +7,41 @@ class CST:
         self.K = None  # Se calcula luego con get_stiffness_matrix
 
     def get_B_matrix(self, nodes):
-        """
-        Calcula la matriz B del elemento CST. Si el área es demasiado pequeña,
-        retorna una matriz nula para evitar NaNs.
-        """
         n1, n2, n3 = [nodes[i - 1] for i in self.node_ids]
-
         x1, y1 = n1.x, n1.y
         x2, y2 = n2.x, n2.y
         x3, y3 = n3.x, n3.y
 
-        # Área del triángulo (puede ser negativa si nodos están en orden horario)
-        area = 0.5 * abs(x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2))
+        area_signed = 0.5 * (x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2))
+        area = abs(area_signed)
 
         B = np.array([
             [y2 - y3, y3 - y1, y1 - y2],
             [x3 - x2, x1 - x3, x2 - x1]
-        ]) / (2 * area)
-
+        ]) / (2*area)
 
         return B, area
 
     def get_stiffness_matrix(self, nodes):
-        """
-        Calcula y almacena la matriz de rigidez local del elemento CST.
-        Si el triángulo es degenerado, se retorna una matriz nula.
-        """
         B, area = self.get_B_matrix(nodes)
-
-        if area == 0.0:
-            self.K = np.zeros((3, 3))
-        else:
-            I = np.identity(2)
-            self.K = area * B.T @ I @ B  # Matriz 3x3
-
+        self.K = area * (B.T @ B)
         return self.K
+
+    def get_load_vector(self, nodes, alpha):
+        n1, n2, n3 = [nodes[i - 1] for i in self.node_ids]
+        x1, y1 = n1.x, n1.y
+        x2, y2 = n2.x, n2.y
+        x3, y3 = n3.x, n3.y
+
+        xc = (x1 + x2 + x3) / 3
+        yc = (y1 + y2 + y3) / 3
+
+        r2 = xc**2 + yc**2
+        if r2 == 0 and alpha < 1:
+            f_val = 0.0
+        else:
+            f_val = -alpha**2 * r2**(alpha / 2 - 1)
+
+        _, area = self.get_B_matrix(nodes)
+        return np.full(3, f_val * area / 3)
+
