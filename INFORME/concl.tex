@@ -1,0 +1,8 @@
+\section{Conclusions}
+
+In this report we have developed and rigorously verified a finite element solver for the two dimensional Poisson equation on unstructured triangular meshes, using both Constant Strain Triangle (CST) and Linear Serendipity Triangle (LST) elements. By applying the Method of Manufactured Solutions, we derived the exact source term and Dirichlet data, assembled element stiffness matrices via Gaussian quadrature, and measured the discrete error $\|u - u_h\|_{H^1(\Omega)}$ over a sequence of uniform and geometrically graded meshes ($r=1.00,1.05,1.10$).
+
+On uniform meshes ($r=1.00$), CST exhibited an empirical error decay $E(N)\sim N^{-2.16}$, confirming second order pointwise convergence of linear elements, while LST achieved its theoretical second order rate in the convergence. Geometric grading produced a transient exponential convergence regime, driven by the exponential shrinkage of the smallest element sizes $h_{\min}\sim r^{-N}$, with observed slopes up to $p\approx3.1$ before machine precision was reached. Beyond this, the global maximum error was controlled by the largest elements ($h_{\max}\to(r-1)/r$), causing the convergence curves to rise and flattens.
+
+Overall, CST elements deliver $\|e\|_{H^1}=O(h)$, $\|e\|_{L^2}=O(h^2)$, and LST elements deliver $\|e\|_{H^1}=O(h^2)$, $\|e\|_{L^2}=O(h^3)$, with mesh grading effectively reducing error constants but not altering asymptotic orders. These findings validate both the mathematical derivations and the software implementation, and illustrate the trade off between targeted error reduction via grading and the emergence of a global error floor determined by the coarsest elements.
+

@@ -8,11 +8,11 @@ Inner product spaces provide the abstract setting for variational formulations a
 \begin{equation}
   (u,v) = \langle u,v\rangle,
 \end{equation}
-which is symmetric, linear in its first argument, and positive‐definite.  It induces the norm
+which is symmetric, linear in its first argument, and positive definite.  It induces the norm
 \begin{equation}
   \|v\| = \sqrt{\langle v,v\rangle},
 \end{equation}
-and satisfies the Cauchy–Schwarz inequality $|\langle u,v\rangle|\le\|u\|\|v\|$.  Completeness under this norm yields a Hilbert space structure, essential for Lax–Milgram arguments \cite{inner_product_space}.
+and satisfies the Cauchy–Schwarz inequality $|\langle u,v\rangle|\le\|u\|\|v\|$.  Completeness under this norm yields a Hilbert space structure, essential for Lax–Milgram arguments. \citep{Rudin1973,Brezis2011}
 
 \subsection{Sobolev Spaces $H^1$ and $H_0^1$}
 
@@ -30,7 +30,7 @@ Imposing homogeneous Dirichlet data leads to
   H_0^1(\Omega)
   = \overline{C_c^\infty(\Omega)}^{\|\cdot\|_{H^1}},
 \end{equation}
-the natural trial space for PDEs with zero boundary conditions \cite{sobolev_space}.
+the natural trial space for PDEs with zero boundary conditions. \citep{Adams1975,Brezis2011}
 
 \subsection{Hilbert Spaces}
 
@@ -49,19 +49,19 @@ and the Sobolev space $H^1(\Omega)$ itself.  The Riesz representation theorem in
   F(v) = (u_F, v)_H
   \quad\text{for some }u_F\in H.
 \end{equation}
-This result underpins the variational theory of PDEs, since the mapping $v\mapsto\ell(v)$ in the weak formulation can be identified with an element of $H_0^1(\Omega)$, guaranteeing existence and uniqueness of solutions. \cite{inner_product_space}
+This result underpins the variational theory of PDEs, since the mapping $v\mapsto\ell(v)$ in the weak formulation can be identified with an element of $H_0^1(\Omega)$, guaranteeing existence and uniqueness of solutions. \citep{Brezis2011}
 
 \subsection{Poisson Problem in 2D}
 
-The Poisson equation models steady‐state diffusion or potential fields.  In two dimensions:
+The Poisson equation models steady state diffusion or potential fields.  In two dimensions:
 \begin{equation}
   -\Delta u = f \quad \text{in}\ \Omega,
 \end{equation}
-subject to boundary conditions on $\partial\Omega$.  Here, $\Delta u=\partial_{xx}u+\partial_{yy}u$ and $f$ is a source term.  Dirichlet conditions $u=g$ or Neumann conditions $\partial_n u=h$ prescribe values on $\partial\Omega$ \cite{poisson_equation, dirichlet_boundary_condition, neumann_boundary_condition}.
+subject to boundary conditions on $\partial\Omega$.  Here, $\Delta u=\partial_{xx}u+\partial_{yy}u$ and $f$ is a source term.  Dirichlet conditions $u=g$ or Neumann conditions $\partial_n u=h$ prescribe values on $\partial\Omega$. \citep{Evans2010}
 
 \subsection{Weak (Variational) Formulation}
 
-Rewriting the boundary‐value problem in Sobolev spaces allows FEM discretization.  For $u-g\in H_0^1(\Omega)$, multiply by test $v\in H_0^1(\Omega)$ and integrate by parts:
+Rewriting the boundary value problem in Sobolev spaces allows FEM discretization.  For $u-g\in H_0^1(\Omega)$, multiply by test $v\in H_0^1(\Omega)$ and integrate by parts:
 \begin{equation}
   \int_\Omega \nabla u\cdot\nabla v\,dx
   = \int_\Omega f\,v\,dx
@@ -76,7 +76,7 @@ the problem becomes: find $u\in H^1(\Omega)$ such that
 \begin{equation}
   a(u,v)=\ell(v)\quad\forall\,v\in H_0^1(\Omega).
 \end{equation}
-Continuity and coercivity of $a(\cdot,\cdot)$ guarantee a unique solution via Lax–Milgram \cite{weak_formulation}.
+Continuity and coercivity of $a(\cdot,\cdot)$ guarantee a unique solution via Lax–Milgram. \citep{Ciarlet1978}
 
 \subsection{Galerkin Method}
 
@@ -90,11 +90,48 @@ This ensures \emph{Galerkin orthogonality}
   a(u-u_h,v_h)=0
   \quad\forall\,v_h\in V_h,
 \end{equation}
-which is fundamental to derive error estimates \cite{Galerkin_method}.
+which is fundamental to derive error estimates. \citep{ErnGuermond2004}
+
+\subsection{Gauss Quadrature}
+
+Numerical integration of stiffness and load integrals in FEM is typically carried out by Gauss (or Gauss–Legendre) quadrature.  In one dimension, the $n$‐point Gauss rule on the reference interval $[-1,1]$ is
+\begin{equation}
+  \int_{-1}^{1} f(x)\,dx
+  \;\approx\;
+  \sum_{i=1}^{n} w_i\,f(x_i),
+\end{equation}
+where the nodes $x_i$ are the roots of the Legendre polynomial $P_n(x)$ and the weights $w_i$ are chosen so that the rule is exact for all polynomials of degree up to $2n-1$.  Concretely,
+\begin{equation}
+  w_i = \frac{2}{\bigl(1 - x_i^2\bigr)\bigl[P_n'(x_i)\bigr]^2}\,,
+  \quad i = 1,\dots,n.
+\end{equation}
+
+To integrate over a general interval $[a,b]$, one applies the affine mapping
+\[
+  x = \frac{b-a}{2}\,\xi + \frac{a+b}{2}, 
+  \quad \xi\in[-1,1],
+\]
+yielding
+\begin{equation}
+  \int_a^b f(x)\,dx
+  = \frac{b-a}{2}
+    \sum_{i=1}^{n} w_i\,f\!\Bigl(\tfrac{b-a}{2}x_i + \tfrac{a+b}{2}\Bigr).
+\end{equation}
+
+For two dimensional triangles $T$, one can either use a tensor product of 1D rules on a reference square and map via an isoparametric transformation, or employ specialized triangular rules with nodes $\{\xi_q\}$ and weights $\{w_q\}$ satisfying
+\begin{equation}
+  \int_{T} f(x,y)\,dx\,dy
+  \;\approx\;
+  \sum_{q=1}^{N_q} w_q\,f\bigl(x(\xi_q),\,y(\xi_q)\bigr),
+\end{equation}
+
+exact for polynomials up to a given degree.  In P1 (CST) elements, a one or three point rule is sufficient since $\nabla\varphi_i\cdot\nabla\varphi_j$ is constant; for P2 (LST), one uses at least a seven point rule to exactly integrate up to quartic terms in the reference triangle.  
+
+Proper choice of quadrature order ensures both accuracy of the stiffness matrix assembly and preservation of the FEM convergence rates. \citep{Dunavant1985}
 
 \subsection{Finite Element Spaces: CST and LST}
 
-Finite element spaces consist of piecewise‐defined basis functions over a mesh.
+Finite element spaces consist of piecewise defined basis functions over a mesh.
 
 \subsubsection{CST Elements (Constant Strain Triangle)}
 
@@ -102,15 +139,15 @@ CST uses three linear shape functions per triangle $T$, each associated with a v
 \begin{equation}
   K^e_{ij}=\int_T\nabla\varphi_i\cdot\nabla\varphi_j\,dx,
 \end{equation}
-with constant gradients on $T$, yielding a simple, first‐order accurate scheme \cite{finite_element_method}.
+with constant gradients on $T$, yielding a simple, first order accurate scheme. \citep{Zienkiewicz2005}
 
 \subsubsection{LST Elements (Linear Serendipity Triangle)}
 
-LST augments CST by adding three mid‐edge nodes, producing six quadratic shape functions per triangle.  The same formula
+LST augments CST by adding three mid edge nodes, producing six quadratic shape functions per triangle.  The same formula
 \begin{equation}
   K^e_{ij}=\int_T\nabla\varphi_i\cdot\nabla\varphi_j\,dx
 \end{equation}
-applies, but gradients vary within $T$, giving second‐order convergence at increased computational cost \cite{finite_element_method}.
+applies, but gradients vary within $T$, giving second order convergence at increased computational cost. \citep{Zienkiewicz2005}
 
 \subsection{Manufactured Solution Method}
 
@@ -120,7 +157,7 @@ The MMS provides a systematic code verification test.  One selects an analytic $
   \quad
   g=u_{\rm MMS}\big|_{\partial\Omega}.
 \end{equation}
-Solving the FEM system with these data and comparing $u_h$ to $u_{\rm MMS}$ in various norms reveals implementation errors \cite{Method_of_manufactured_solutions}.
+Solving the FEM system with these data and comparing $u_h$ to $u_{\rm MMS}$ in various norms reveals implementation errors. \citep{Roache1998}
 
 \subsection{Convergence Study}
 
@@ -136,4 +173,4 @@ and for LST
   \quad
   \|u-u_h\|_{L^2}=O(h^3).
 \end{equation}
-Numerical experiments on successive mesh refinements, plotted as $\log(\|e\|)$ vs.\ $\log(h)$, confirm these rates \cite{Convergence_numerical_analysis}.
+Numerical experiments on successive mesh refinements, plotted as $\log(\|e\|)$ vs.\ $\log(h)$, confirm these rates. \citep{Johnson2009}
